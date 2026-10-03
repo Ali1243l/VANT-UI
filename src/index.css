@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: #f8f9fa;
+    color: #15171c;
+    font-family: 'Outfit', 'Alexandria', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  html.dark body {
+    background-color: #0d0f12;
+    color: #f3f4f6;
+  }
+  html[dir="rtl"] body {
+    font-family: 'Alexandria', 'Outfit', system-ui, -apple-system, sans-serif;
+  }
+  :focus-visible {
+    outline: 2px solid #004ad7;
+    outline-offset: 2px;
+  }
+  html.dark :focus-visible {
+    outline: 2px solid #3b82f6;
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-shimmer {
+  transform: translateX(-100%);
+  animation: shimmer 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
